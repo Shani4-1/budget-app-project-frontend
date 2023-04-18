@@ -12,6 +12,7 @@ const Transactions = () => {
 
     useEffect(() => {
         axios.get(`${URL}/transactions`).then((res) => {
+            console.log(res.data)
             setTransactions(res.data)
         });
     }, [])
