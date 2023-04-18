@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Nav = () => {
     return (
-        <nav>
+        <nav className="Nav">
             <Link to="/">
                 <h1>Budget App</h1>
             </Link>
