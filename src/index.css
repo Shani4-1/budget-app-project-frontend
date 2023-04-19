@@ -21,3 +21,10 @@ nav {
   box-shadow: 2px 2px 4px grey;
   margin-bottom: 1em;
 }
+table, th, td {
+  border: 1px solid;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
