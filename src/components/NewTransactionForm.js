@@ -45,7 +45,7 @@ const NewTransactionForm = () => {
     year: "numeric",
   });
 
-  console.log(date);
+ 
 
   return (
     <div>

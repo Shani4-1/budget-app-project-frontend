@@ -65,3 +65,17 @@ button:hover {
   background-color: blue;
   color: white;
 }
+.Details {
+  border: 2px solid blue;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  margin: 0 auto;
+  max-width: 500px;
+}
+.Show h2{
+  text-align: center;
+}
+.new-transaction h2 {
+  text-align: center;
+}

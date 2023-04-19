@@ -42,7 +42,7 @@ const EditTransaction = () => {
     axios
       .get(`${URL}/transactions/${id}`)
       .then((req) => {
-        console.log(req.data)
+        
         setTransaction(req.data);
         setOriginalTransaction(req.data);
       })
