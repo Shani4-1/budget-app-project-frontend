@@ -7,24 +7,24 @@ const URL = process.env.REACT_APP_API_URL;
 const TransactionDetails = () => {
   const [transaction, setTransaction] = useState({});
 
-  const { index } = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
     axios
-      .get(`${URL}/transactions/${index}`)
+      .get(`${URL}/transactions/${id}`)
       .then((res) => {
         setTransaction(res.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [index, navigate]);
+  }, [id, navigate]);
   
   const handleDelete = () => {
-    axios.delete(`${URL}/transactions/${index}`)
-    .then((res) => {
-        console.log(res)
+    axios.delete(`${URL}/transactions/${id}`)
+    .then(() => {
+        
         navigate("/transactions")
     }).catch((error) => console.log(error))
 }
@@ -49,7 +49,7 @@ const TransactionDetails = () => {
             {""}
             <button>
 
-            <a href={`/transactions/${index}/edit`}>Edit</a>
+            <a href={`/transactions/${id}/edit`}>Edit</a>
             </button>
           </div>
           <div>

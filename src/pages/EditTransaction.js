@@ -5,14 +5,18 @@ import { useParams, useNavigate } from "react-router-dom";
 const URL = process.env.REACT_APP_API_URL;
 
 const EditTransaction = () => {
-  let { index } = useParams();
+  let { id } = useParams();
+  
   const [transaction, setTransaction] = useState({
     date: "",
     transactionDescription: "",
-    amount: "",
+    amount: 0, 
     deposit: false,
     from: "",
+    id: ""
   });
+  
+  const [originalTransaction, setOriginalTransaction] = useState({});
 
   let navigate = useNavigate();
   const currentDate = new Date();
@@ -27,28 +31,41 @@ const EditTransaction = () => {
   };
 
   const handleCheckboxChange = (event) => {
-    setTransaction({ ...transaction, deposit: !transaction.deposit });
+    setTransaction((prevState) => ({
+      ...prevState,
+      deposit: !prevState.deposit,
+    }));
   };
+  
 
   useEffect(() => {
     axios
-      .get(`${URL}/transactions/${index}`)
-      .then((res) => {
-        setTransaction(res.data);
+      .get(`${URL}/transactions/${id}`)
+      .then((req) => {
+        console.log(req.data)
+        setTransaction(req.data);
+        setOriginalTransaction(req.data);
       })
       .catch((error) => console.log(error));
-  }, [index]);
+  }, [id]);
+  
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    axios.put(`${URL}/transactions/${index}`, transaction)
+    axios.put(`${URL}/transactions/${id}`, transaction)
       .then((res) => {
         setTransaction(res.data);
-        navigate(`/transactions/${index}`);
+        navigate(`/transactions/${id}`);
       })
       .catch((error) => console.log(error));
   };
   
+  const handleCancel = () => {
+    setTransaction(originalTransaction);
+    navigate(`/transactions/${id}`);
+  };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
@@ -96,9 +113,7 @@ const EditTransaction = () => {
         />
       </form>
 
-      <button>
-        <a href="/transactions">Cancel</a>
-      </button>
+      <button onClick={handleCancel}>Cancel</button>
       <button onClick={handleSubmit}>Submit</button>
     </div>
   );

@@ -1,9 +1,9 @@
-const Transaction = ({ transaction, index }) => {
+const Transaction = ({ transaction }) => {
   return (
     <tr>
       <td>{transaction.date}</td>
       <td>
-        <a href={`/transactions/${index}`}>
+        <a href={`/transactions/${transaction.id}`}>
           {transaction.transactionDescription}
         </a>
       </td>

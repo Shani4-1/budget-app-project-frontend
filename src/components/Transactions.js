@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
 
 import Transaction from "./Transaction.js";
+import  "./Transactions.css"
 
 const URL = process.env.REACT_APP_API_URL;
 
@@ -11,12 +11,7 @@ const Transactions = () => {
 
   useEffect(() => {
     axios.get(`${URL}/transactions`).then((res) => {
-      const transactionsWithId = res.data.map((transaction) => ({
-        ...transaction,
-        id: uuidv4(),
-      }));
-      console.log(transactionsWithId)
-      setTransactions(transactionsWithId);
+      setTransactions(res.data);
     });
   }, []);
 
@@ -53,7 +48,7 @@ const Transactions = () => {
                 <Transaction
                   key={transaction.id}
                   transaction={transaction}
-                  index={index}
+                  
                 />
               ))}
           </tbody>

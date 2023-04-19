@@ -23,8 +23,8 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/transactions' element={<IndexOfTransactions />} />
             <Route path='/transactions/new' element={<NewTransaction />} />
-            <Route path='/transactions/:index' element={<ShowTransaction />} />
-            <Route path='/transactions/:index/edit' element={<EditTransaction />} />
+            <Route path='/transactions/:id' element={<ShowTransaction />} />
+            <Route path='/transactions/:id/edit' element={<EditTransaction />} />
             <Route path='*' element={<FourOFour />} />
           </Routes>
         </main>
