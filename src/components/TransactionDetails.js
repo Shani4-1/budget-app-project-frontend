@@ -20,6 +20,14 @@ const TransactionDetails = () => {
         console.log(error);
       });
   }, [index, navigate]);
+  
+  const handleDelete = () => {
+    axios.delete(`${URL}/transactions/${index}`)
+    .then((res) => {
+        console.log(res)
+        navigate("/transactions")
+    }).catch((error) => console.log(error))
+}
 
   return (
     <article className="Details">
@@ -46,7 +54,7 @@ const TransactionDetails = () => {
           </div>
           <div>
             {""}
-            <button onClick={""}>Delete</button>
+            <button onClick={handleDelete}>Delete</button>
           </div>
         </div>
       </div>
